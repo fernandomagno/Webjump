@@ -1,0 +1,51 @@
+package testes_automatizados;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class webjump3 {
+
+	@Test
+	public void cenario3() {
+		
+		DesiredCapabilities capacidade = DesiredCapabilities.chrome();
+		
+		//capacidade.setJavascriptEnabled(true);
+		
+		System.setProperty("webdriver.chrome.driver", "C://Drivers/chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver(); 
+				//(capacidade)
+		
+		driver.manage().window().maximize();
+
+		driver.get("https://webjump-user.github.io/testqa/");
+		
+		WebElement botao1 = driver.findElement(By.id("first_name"));
+		botao1.sendKeys("Fernando Magno");
+		
+		WebElement botaoOne = driver.findElement(By.id("btn_one"));
+		botaoOne.click();
+		
+		WebElement optionThree = driver.findElement(By.id("opt_three"));
+		optionThree.click();
+		
+		Select dropdown = new Select(driver.findElement(By.id("select_box")));
+		dropdown.selectByVisibleText("ExampleTwo");
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("panel_body_three")));
+		
+		driver.quit();
+		
+	}
+}
