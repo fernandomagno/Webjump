@@ -1,0 +1,54 @@
+package testes_automatizados;
+
+import static org.junit.Assert.*;
+
+import java.awt.List;
+import java.util.ArrayList;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class webjump1 {
+
+	@Test
+	public void cenario1() {
+		
+		DesiredCapabilities capacidade = DesiredCapabilities.chrome();
+		
+		capacidade.setJavascriptEnabled(true);
+		
+		System.setProperty("webdriver.chrome.driver", "C://Drivers/chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver (capacidade);
+		
+		driver.manage().window().maximize();
+
+		driver.get("https://webjump-user.github.io/testqa/");
+		
+		WebElement botao1 = driver.findElement(By.id("btn_one"));
+		botao1.click();
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("btn_one")));
+
+		WebElement botao2 = driver.findElement(By.id("btn_two"));
+		botao2.click();
+		WebDriverWait wait2 = new WebDriverWait(driver, 5);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("btn_two")));
+		
+		WebElement botao4 = driver.findElement(By.id("btn_link"));
+		botao4.click();
+		WebDriverWait wait3 = new WebDriverWait(driver, 5);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("btn_link")));
+		
+		driver.quit();
+		
+	}
+
+}
